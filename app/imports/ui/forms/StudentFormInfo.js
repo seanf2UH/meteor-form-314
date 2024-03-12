@@ -12,6 +12,9 @@ const StudentFormSchema = new SimpleSchema({
   bio: {
     label: 'Biographical Statement', type: String, optional: true, defaultValue: '',
   },
+  instructor: {
+    label: 'Instructor', type: String, allowedValues: DataValues.instructors, defaultValue: DataValues.instructors[0],
+  },
   hobbies: { label: 'Hobbies', type: Array, optional: true },
   'hobbies.$': { type: String, allowedValues: DataValues.hobbies },
   level: {

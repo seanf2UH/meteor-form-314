@@ -38,16 +38,13 @@ const EditStudent = () => {
     let updateError;
     const studentId = studentDoc._id;
     const enrollmentId = enrollmentDoc._id;
-    const { name, bio, level, gpa, enrolled, hobbies, major } = data;
-    StudentData.update(studentId, { $set: { name, bio, level, gpa: gpa2Number(gpa), hobbies, major } }, (error) => {
-      updateError = error;
-    });
+    const { name, bio, level, gpa, enrolled, hobbies, major, instructor } = data;
+    // eslint-disable-next-line max-len
+    StudentData.update(studentId, { $set: { name, bio, level, gpa: gpa2Number(gpa), hobbies, major, instructor } }, (error) => { updateError = error; });
     if (updateError) {
       swal('Error', updateError.message, 'error');
     } else {
-      EnrollmentData.update(enrollmentId, { $set: { enrolled } }, (error) => {
-        updateError = error;
-      });
+      EnrollmentData.update(enrollmentId, { $set: { enrolled } }, (error) => { updateError = error; });
       if (updateError) {
         swal('Error', updateError.message, 'error');
       } else {
@@ -72,6 +69,7 @@ const EditStudent = () => {
                 <Row>
                   <Col><TextField name="name" showInlineError placeholder="Your name" /></Col>
                   <Col><TextField name="email" showInlineError placeholder="Your email" disabled /></Col>
+                  <Col><SelectField name="instructor" showInlineError /></Col>
                 </Row>
                 <LongTextField name="bio" showInlineError placeholder="A bit about you" />
                 <Row>

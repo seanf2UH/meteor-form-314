@@ -19,11 +19,11 @@ const CreateStudent = () => {
   const submit = (data, formRef) => {
     let insertError;
     const {
-      name, email, bio, level, gpa, enrolled, hobbies, major,
+      name, email, bio, level, gpa, enrolled, hobbies, major, instructor,
     } = data;
     StudentData.insert(
       {
-        name, email, bio, level, gpa: gpa2Number(gpa), hobbies, major,
+        name, email, bio, level, gpa: gpa2Number(gpa), hobbies, major, instructor,
       },
       (error) => { insertError = error; },
     );
@@ -56,6 +56,7 @@ const CreateStudent = () => {
               <Row>
                 <Col><TextField name="name" showInlineError placeholder="Your name" /></Col>
                 <Col><TextField name="email" showInlineError placeholder="Your email" /></Col>
+                <Col><SelectField name="instructor" showInlineError placeholder="Choose one" /></Col>
               </Row>
               <LongTextField name="bio" showInlineError placeholder="A bit about you" />
               <Row>
